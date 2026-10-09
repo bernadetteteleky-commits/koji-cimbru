@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="KOJI-CIMBRU: development and validation of a koji fermentation technology for pork and beef dishes. Innovation voucher project PN-IV-P7-7.1-CI-2025-0166, USAMV Cluj-Napoca and Cimbru.">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>KOJI-CIMBRU</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark full-bleed hero with koji mycelium growing in from the right; below it, wide bands alternating a reading column with card grids. */
+:root {
+  --bg: #F2F5EE;
+  --surface: #FFFFFF;
+  --ink: #1B231D;
+  --muted: #56635A;
+  --rule: #CFD8CB;
+  --accent: #55651A;        /* A. oryzae spore green */
+  --accent-soft: #E4EBCF;
+  --mint: #2E9E7B;          /* Cimbru brand green, darkened for text contrast */
+  --meat: #7C2F2B;          /* aged-meat red: comparison bar and placeholders */
+  --meat-soft: #F6E3E0;
+  --hero-bg: #1E2913;
+  --hero-ink: #F3F6E8;
+  --hero-muted: #B9C4A4;
+  --hero-line: #C9DC6E;
+  --plate: #FFFFFF;         /* logo plate stays white in both themes */
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131813; --surface: #1C241E; --ink: #E9EEE6; --muted: #A3B0A6; --rule: #344038;
+    --accent: #B9CC6A; --accent-soft: #2A331A; --mint: #5FD0A8; --meat: #F0A9A2; --meat-soft: #3A2220;
+    --hero-bg: #1F2B12; --hero-ink: #F3F6E8; --hero-muted: #B9C4A4; --hero-line: #C9DC6E; --plate: #FFFFFF;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131813; --surface: #1C241E; --ink: #E9EEE6; --muted: #A3B0A6; --rule: #344038;
+  --accent: #B9CC6A; --accent-soft: #2A331A; --mint: #5FD0A8; --meat: #F0A9A2; --meat-soft: #3A2220;
+  --hero-bg: #1F2B12; --hero-ink: #F3F6E8; --hero-muted: #B9C4A4; --hero-line: #C9DC6E; --plate: #FFFFFF;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.wrap { width: 100%; max-width: 62rem; margin-inline: auto; padding-inline: 20px; }
+.stack { display: flex; flex-direction: column; gap: 22px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.08; }
+h2 { font-size: clamp(1.7rem, 4.5vw, 2.4rem); font-weight: 800; letter-spacing: -0.015em; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+.kicker { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.todo { background: var(--meat-soft); color: var(--meat); border-bottom: 1px dashed var(--meat); padding: 0 4px; font-family: var(--mono); font-size: 0.85em; }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-ink); position: relative; overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero .wrap { position: relative; padding-block: 22px 56px; display: flex; flex-direction: column; gap: 56px; }
+nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.92rem; align-items: center; }
+nav a { text-decoration: none; color: var(--hero-muted); font-weight: 500; }
+nav a:hover { color: var(--hero-line); }
+nav a:focus-visible { outline-color: var(--hero-line); }
+nav .brand { color: var(--hero-ink); font-family: var(--display); font-weight: 800; margin-right: auto; letter-spacing: 0.02em; }
+.hero-text { display: flex; flex-direction: column; gap: 18px; max-width: 40rem; }
+.hero .kicker { color: var(--hero-line); }
+h1 { font-size: clamp(3rem, 13vw, 6.5rem); font-weight: 800; letter-spacing: -0.035em; line-height: 0.92; }
+h1 span { color: var(--hero-line); }
+.lede { font-size: clamp(1.1rem, 2.6vw, 1.35rem); line-height: 1.4; color: var(--hero-ink); }
+.sub { color: var(--hero-muted); font-size: 0.98rem; }
+
+/* key figures */
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.fig { padding: 22px 16px 22px 0; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.fig b { font-family: var(--display); font-size: 2.4rem; font-weight: 800; line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums; }
+.fig span { color: var(--muted); font-size: 0.92rem; }
+
+main { display: flex; flex-direction: column; gap: 72px; padding-block: 0 72px; }
+section { display: flex; flex-direction: column; gap: 22px; }
+.cols { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+@media (max-width: 760px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.prose { display: flex; flex-direction: column; gap: 14px; max-width: 38rem; }
+
+/* time comparison chart: one scale, 0 to 30 days */
+.chart { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 18px; }
+.bar-row { display: flex; flex-direction: column; gap: 6px; }
+.bar-row .lab { display: flex; justify-content: space-between; gap: 12px; font-size: 0.92rem; }
+.bar-row .lab b { font-family: var(--mono); font-weight: 500; white-space: nowrap; }
+.track { height: 22px; background: var(--accent-soft); border-radius: 3px; overflow: hidden; }
+.track i { display: block; height: 100%; border-radius: 3px; }
+.b-trad { width: 100%; background: var(--meat); }
+.b-koji { width: 10%; background: var(--accent); }
+.axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+.chart small { color: var(--muted); font-size: 0.8rem; line-height: 1.45; }
+
+/* cards */
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 700px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
+.obj, .org, .member { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 22px; min-width: 0; }
+.obj, .org { display: flex; flex-direction: column; gap: 10px; }
+.obj .n { font-family: var(--display); font-weight: 800; font-size: 2rem; line-height: 1; color: var(--accent); }
+.obj p, .org p, .member p { color: var(--muted); font-size: 0.96rem; }
+.goal { font-size: 1.15rem; max-width: 46rem; }
+
+/* activities: a real sequence, laid out left to right */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0; counter-reset: s; }
+.steps li { counter-increment: s; border-top: 3px solid var(--accent); padding: 16px 20px 8px 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.steps li::before { content: "Stage " counter(s); font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.steps p { color: var(--muted); font-size: 0.95rem; }
+
+/* results + gallery */
+ul.plain { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+ul.plain li { padding-left: 20px; position: relative; }
+ul.plain li::before { content: ""; position: absolute; left: 0; top: 0.66em; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 14px; }
+.shot { aspect-ratio: 4 / 3; max-width: 100%; border: 1px dashed var(--meat); background: var(--meat-soft); color: var(--meat); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; font-family: var(--mono); font-size: 0.8rem; }
+
+/* photographs */
+figure { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+figure img { display: block; width: 100%; height: auto; border-radius: 8px; }
+figcaption { font-size: 0.82rem; color: var(--muted); }
+.banner img { aspect-ratio: 3 / 1; object-fit: cover; }
+.plate { background: var(--plate); border: 1px solid var(--rule); border-radius: 8px; padding: 12px; }
+.plate img { border-radius: 4px; }
+.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.strip img { aspect-ratio: 4 / 3; object-fit: cover; }
+@media (max-width: 600px) { .strip { grid-template-columns: minmax(0, 1fr); } .banner img { aspect-ratio: 16 / 9; } }
+.side { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+/* team */
+.member { display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 18px; align-items: start; }
+.member img { width: 116px; height: 116px; object-fit: cover; border-radius: 8px; display: block; }
+.member .txt { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.member .links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 0.9rem; }
+@media (max-width: 420px) { .member { grid-template-columns: minmax(0, 1fr); } }
+
+/* partners */
+.org .marks { display: flex; gap: 12px; align-items: center; }
+.org .marks img { height: 76px; width: auto; background: var(--plate); border-radius: 6px; padding: 4px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tags span { font-size: 0.82rem; font-weight: 500; background: var(--accent-soft); color: var(--ink); border-radius: 99px; padding: 3px 12px; }
+.ledger { margin: 0; border-top: 2px solid var(--ink); }
+.ledger div { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 4px 20px; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.ledger dt { color: var(--muted); font-size: 0.9rem; }
+.ledger dd { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; }
+.mono { font-family: var(--mono); font-size: 0.9em; }
+@media (max-width: 560px) { .ledger div { grid-template-columns: 1fr; } }
+
+.contact { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; }
+.mail { font-family: var(--mono); font-size: 1rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 12px; user-select: all; overflow-wrap: anywhere; }
+button.copy { font: inherit; font-size: 0.9rem; font-weight: 600; background: var(--accent); color: var(--bg); border: 0; border-radius: 6px; padding: 9px 14px; cursor: pointer; }
+
+footer { border-top: 2px solid var(--ink); }
+footer .wrap { padding-block: 24px 48px; display: flex; flex-direction: column; gap: 18px; font-size: 0.9rem; color: var(--muted); }
+.logos { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; background: var(--plate); border-radius: 8px; padding: 16px 20px; }
+.logos img { height: 64px; width: auto; }
+</style>
+
+</head>
+<body>
+<div lang="en">
+<header class="hero" id="top">
+  <canvas id="myc" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <nav aria-label="Sections">
+      <a class="brand" href="#top">KOJI-CIMBRU</a>
+      <a href="#about">About</a>
+      <a href="#objectives">Objectives</a>
+      <a href="#activities">Activities</a>
+      <a href="#results">Results</a>
+      <a href="#team">Team</a>
+      <a href="#partners">Partners</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hero-text">
+      <span class="kicker">Innovation voucher · USAMV Cluj-Napoca × Cimbru</span>
+      <h1>KOJI<span>-</span>CIMBRU</h1>
+      <p class="lede">Pork and beef, tenderised in 2–3 days by a noble mould: <em>Aspergillus oryzae</em>.</p>
+      <p class="sub">Development and validation of an innovative koji fermentation technology for meat dishes inspired by Romanian gastronomy</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="figures" aria-label="The project in figures">
+      <div class="fig"><b>48–72 h</b><span>koji fermentation time</span></div>
+      <div class="fig"><b>2</b><span>applications: pork and beef</span></div>
+      <div class="fig"><b>6 months</b><span>July – December 2026</span></div>
+      <div class="fig"><b>TRL 5</b><span>target technology readiness level</span></div>
+    </div>
+  </div>
+
+  <div class="wrap"><figure class="banner"><img src="img/cuts.jpg" alt="Five cuts of raw beef on baking paper with rosemary and chillies"></figure></div>
+
+  <section id="about"><div class="wrap cols">
+    <div class="prose">
+      <span class="kicker">About the project</span>
+      <h2>An old technique, a new raw material</h2>
+      <p>Koji is a culture of <em>Aspergillus oryzae</em>, traditionally used in fermented foods based on cereals and soy. The proteases and lipases it produces release free amino acids, peptides and aroma compounds. The meat becomes more tender and its umami taste intensifies.</p>
+      <p>The process is poorly documented for pork and beef, particularly regarding the compounds formed and food safety. The project develops and validates two technological applications that the restaurant Cimbru will integrate into its own kitchen.</p>
+      <p>The research is carried out by a team from the Faculty of Food Science and Technology at USAMV Cluj-Napoca, from laboratory trials to validation under real conditions of use.</p>
+    </div>
+    <div class="side">
+    <div class="chart" role="img" aria-label="Processing time: traditional ageing over 30 days, koji fermentation 48 to 72 hours">
+      <h3>Processing time</h3>
+      <div class="bar-row">
+        <div class="lab"><span>Traditional ageing</span><b>over 30 days</b></div>
+        <div class="track"><i class="b-trad"></i></div>
+      </div>
+      <div class="bar-row">
+        <div class="lab"><span>Koji fermentation</span><b>48–72 h</b></div>
+        <div class="track"><i class="b-koji"></i></div>
+      </div>
+      <div class="axis"><span>0</span><span>10</span><span>20</span><span>30 days</span></div>
+      <small>Durations estimated from the literature; the project tests them experimentally for pork and beef.</small>
+    </div>
+    <figure><img src="img/seasoned.jpg" alt="Raw beef steak seasoned with oil, garlic, rosemary and pepper"></figure>
+    </div>
+  </div>
+  <div class="wrap"><figure>
+    <div class="plate"><img src="img/koji.jpg" alt="Koji starter culture, Aspergillus oryzae conidiophore and conidia under the microscope, and the steps from steamed rice to koji after incubation"></div>
+    <figcaption>How koji is made: spores of <em>Aspergillus oryzae</em> are spread on steamed rice and grow into a mycelium during incubation. Illustrative image.</figcaption>
+  </figure></div></section>
+
+  <section id="objectives"><div class="wrap stack">
+    <span class="kicker">Objectives</span>
+    <h2>What we set out to do</h2>
+    <p class="goal">A controlled koji fermentation technology for pork and beef dishes that improves sensory quality, shortens ageing, and increases microbiological safety and stability.</p>
+    <div class="grid2">
+      <div class="obj"><span class="n">O1</span><h3>Process development and optimisation</h3><p>Setting the technological parameters (culture type and dose, time, temperature, humidity) for two applications: pork, targeting faster tenderisation and umami taste, and beef, targeting aromatic complexity, texture and stability.</p></div>
+      <div class="obj"><span class="n">O2</span><h3>Biochemical and microbiological characterisation</h3><p>Physico-chemical parameters (pH, water activity, proximate analysis, colour), microbiological analysis for food safety, the effect of cooking, and the profile of the compounds formed (free amino acids, peptides, metabolites), including by HPLC.</p></div>
+      <div class="obj"><span class="n">O3</span><h3>Sensory evaluation and validation</h3><p>Texture, aroma, taste and overall acceptability assessed with a 9-point hedonic test, correlated with the analytical data and compared with traditional processing methods.</p></div>
+      <div class="obj"><span class="n">O4</span><h3>Technology transfer and exploitation</h3><p>Technological protocols, technical sheets and implementation guides, plus validation of the applications under real conditions of use at Cimbru.</p></div>
+    </div>
+  </div></section>
+
+  <section id="activities"><div class="wrap stack">
+    <span class="kicker">Activities</span>
+    <h2>From the laboratory to the kitchen in 6 months</h2>
+    <ol class="steps">
+      <li><h3>Fermentation protocols</h3><p>Developing and optimising the protocols for pork and beef.</p></li>
+      <li><h3>Experimental batches</h3><p>Producing batches of fermented products alongside control samples.</p></li>
+      <li><h3>Characterisation and evaluation</h3><p>Physico-chemical, microbiological and biochemical analyses, followed by sensory evaluation.</p></li>
+      <li><h3>Validation and transfer</h3><p>Validation in the Cimbru kitchen, product technical sheets, and transfer to the beneficiary.</p></li>
+    </ol>
+    <div class="strip">
+      <figure><img src="img/raw.jpg" alt="Raw rib-eye steak with rosemary and spices"><figcaption>Raw material</figcaption></figure>
+      <figure><img src="img/chamber.jpg" alt="Beef cuts coated in koji on racks in a stainless-steel chamber"><figcaption>Fermentation with koji</figcaption></figure>
+      <figure><img src="img/plated.jpg" alt="Grilled steak on a plate"><figcaption>On the plate</figcaption></figure>
+    </div>
+    <p class="note" style="font-size:0.82rem;color:var(--muted)">Illustrative images. Photographs of the project's own batches will be added as the work progresses.</p>
+  </div></section>
+
+  <section id="results"><div class="wrap stack">
+    <span class="kicker">Results</span>
+    <h2>What the project leaves behind</h2>
+    <ul class="plain">
+      <li>at least two experimentally validated fermentation protocols;</li>
+      <li>product technical sheets and implementation guides for the beneficiary;</li>
+      <li>research reports on the composition, safety and sensory quality of the products;</li>
+      <li>a technology at TRL 5, integrated into the restaurant's operations.</li>
+    </ul>
+    <p>Results obtained: <span class="todo">public summary, at project end</span></p>
+    <p>Dissemination: <span class="todo">articles, conference papers, events</span></p>
+  </div></section>
+
+  <section id="team"><div class="wrap stack">
+    <span class="kicker">Team</span>
+    <h2>The researchers</h2>
+    <p class="goal">Four researchers from the Faculty of Food Science and Technology, USAMV Cluj-Napoca, working in food biotechnology, applied microbiology and controlled fermentation.</p>
+    <div class="grid2">
+      <div class="member">
+        <img src="team/teleky.jpg" alt="Portrait of Bernadette-Emőke Teleky" width="116" height="206" style="height:auto">
+        <div class="txt">
+          <span class="kicker">Project lead</span>
+          <h3>Dr. Bernadette-Emőke Teleky</h3>
+          <p>Scientific Researcher II. She holds two doctorates, in Mechanical Engineering (2016) and in Biotechnology (2025, <em>summa cum laude</em>), and works on solid-state and submerged fermentation, the valorisation of agro-industrial by-products, and bioactive compounds. She led the postdoctoral project Bio-Cycle on itaconic acid production from food-industry by-products and has authored more than 60 indexed publications.</p>
+          <div class="links"><a href="https://orcid.org/0000-0003-3672-8717">ORCID</a></div>
+        </div>
+      </div>
+      <div class="member">
+        <img src="team/vodnar.jpg" alt="Portrait of Dan Cristian Vodnar" width="116" height="116">
+        <div class="txt">
+          <span class="kicker">Team member</span>
+          <h3>Prof. Dr. Dan Cristian Vodnar</h3>
+          <p>Professor of food biotechnology and President of the USAMV Cluj-Napoca Senate. Listed every year since 2020 among the top 2% most cited scientists worldwide (Stanford University and Elsevier), with an h-index of 70 and more than 250 publications. His group developed the synbiotic Echibiotic and received the “Gheorghe Ionescu-Șișești” Prize for Biotechnology at the 2024 Romanian Research Gala.</p>
+          <div class="links"><a href="https://danvodnar.ro/">danvodnar.ro</a><a href="https://orcid.org/0000-0001-5407-8071">ORCID</a></div>
+        </div>
+      </div>
+      <div class="member">
+        <img src="team/calinoiu.jpg" alt="Portrait of Lavinia-Florina Călinoiu" width="116" height="116">
+        <div class="txt">
+          <span class="kicker">Team member</span>
+          <h3>Dr. Lavinia-Florina Călinoiu</h3>
+          <p>Lecturer in food biotechnology, food chemistry and molecular gastronomy, with a PhD in Food Biotechnology (2019). She coordinates the Horizon Europe MSCA Staff Exchanges project PURE-WAY on turning agro-food waste into value, led a national project on in situ vitamin B12 fortification of cereal by-products, and evaluates proposals for the European Commission. She has published 45 scientific articles.</p>
+          <div class="links"><a href="https://orcid.org/0000-0002-0198-0472">ORCID</a></div>
+        </div>
+      </div>
+      <div class="member">
+        <img src="team/martau.jpg" alt="Portrait of Gheorghe-Adrian Martău" width="116" height="116">
+        <div class="txt">
+          <span class="kicker">Team member</span>
+          <h3>Dr. Gheorghe-Adrian Martău</h3>
+          <p>Lecturer in fermentation technologies (malt and beer; wine, vinegar and distilled products; special biotechnologies), with a PhD in Food Biotechnology awarded <em>summa cum laude</em>. He leads a national young-teams project on in situ lovastatin production through a hybrid fermentation–enzymatic bioprocess, and works on solid-state fermentation and the valorisation of agro-industrial by-products.</p>
+          <div class="links"><a href="https://orcid.org/0000-0001-8220-1030">ORCID</a></div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="partners"><div class="wrap stack">
+    <span class="kicker">Partners</span>
+    <h2>A restaurant and a university</h2>
+    <div class="grid2">
+      <div class="org">
+        <div class="marks"><img src="logos/cimbru.png" alt="Cimbru Restaurant logo"></div>
+        <span class="kicker" style="color:var(--mint)">Beneficiary</span>
+        <h3>Cimbru · CIMBRU GOURMET SRL</h3>
+        <p>Cimbru began as a food truck in Cluj-Napoca and grew into a restaurant and delivery service. Since autumn 2021, chef Nicolae Crăciun has also run Cimbru Author Cuisine on Strada Emil Isac 11, a casual fine dining restaurant whose short menu changes every week with the season and works closely with local producers.</p>
+        <p>In 2026 it became the first restaurant in Romania listed in the international We're Smart Green Guide, with a rating of one radish, and joined the JRE (Jeunes Restaurateurs) association.</p>
+        <div class="tags"><span>We're Smart Green Guide 2026</span><span>JRE member</span></div>
+        <p>Beneficiary lead: Nicolae Crăciun</p>
+        <p><a href="https://cimbru.net/">cimbru.net</a> · <a href="https://cluj24.ro/un-restaurant-clujean-primul-din-romania-intr-un-ghid-gastronomic-international-chef-nicolae-craciun-punem-si-orasul-pe-harta-306498.html">Cluj24 article (in Romanian)</a></p>
+      </div>
+      <div class="org">
+        <div class="marks"><img src="logos/usamv.png" alt="USAMV Cluj-Napoca logo"><img src="logos/sta.png" alt="Faculty of Food Science and Technology logo"></div>
+        <span class="kicker">RDI service provider</span>
+        <h3>USAMV Cluj-Napoca</h3>
+        <p>The University of Agricultural Sciences and Veterinary Medicine Cluj-Napoca, founded in 1869. The work is carried out at the Faculty of Food Science and Technology, with the university's own staff and research infrastructure.</p>
+        <p><a href="https://eertis.eu/erio-2300-000j-4198">Research infrastructure (EERTIS)</a></p>
+      </div>
+    </div>
+    <dl class="ledger" aria-label="Project fact sheet">
+      <div><dt>Project code</dt><dd class="mono">PN-IV-P7-7.1-CI-2025-0166</dd></div>
+      <div><dt>Funding contract</dt><dd>no. 3CI/2026</dd></div>
+      <div><dt>Implementation period</dt><dd>6 July – 31 December 2026</dd></div>
+      <div><dt>Total value</dt><dd>50,000 RON</dd></div>
+      <div><dt>Public funding</dt><dd>45,000 RON</dd></div>
+      <div><dt>Beneficiary contribution</dt><dd>5,000 RON</dd></div>
+    </dl>
+  </div></section>
+
+  <section id="contact"><div class="wrap" style="display:flex;flex-direction:column;gap:16px">
+    <span class="kicker">Contact</span>
+    <h2>Get in touch</h2>
+    <p>Dr. Bernadette-Emőke Teleky<br>Faculty of Food Science and Technology, USAMV Cluj-Napoca<br>Calea Mănăștur 3–5, 400372 Cluj-Napoca, Romania</p>
+    <div class="contact">
+      <span class="mail" id="mail">bernadette.teleky@usamvcluj.ro</span>
+      <button class="copy" id="copy" type="button">Copy address</button>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="logos" aria-label="Logos">
+    <img src="logos/uefiscdi.png" alt="UEFISCDI logo">
+    <img src="logos/usamv.png" alt="USAMV Cluj-Napoca logo">
+    <img src="logos/sta.png" alt="Faculty of Food Science and Technology logo">
+    <img src="logos/cimbru.png" alt="Cimbru Restaurant logo">
+  </div>
+  <p>This project is funded by the Romanian Ministry of Education and Research, through UEFISCDI, under the National Plan for Research, Development and Innovation 2022–2027 (PNCDI IV), Innovation Voucher instrument, project code PN-IV-P7-7.1-CI-2025-0166, contract no. 3CI/2026.</p>
+  <p>Last updated: 9 October 2026</p>
+</div></footer>
+</div>
+
+<script>
+// Koji mycelium: branching hyphae growing in from the right edge, ending in round conidial heads.
+(function () {
+  var c = document.getElementById('myc'), hero = c.parentElement;
+  function draw() {
+    var w = hero.clientWidth, h = hero.clientHeight, d = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = w * d; c.height = h * d;
+    var g = c.getContext('2d'); g.scale(d, d);
+    var col = getComputedStyle(document.documentElement).getPropertyValue('--hero-line').trim() || '#C9DC6E';
+    var s = 7; function r() { s = (s * 16807) % 2147483647; return s / 2147483647; }
+    var tips = [], n = 0, wide = w > 760;
+    for (var i = 0; i < 4; i++) tips.push({ x: w + 5, y: h * (0.3 + 0.2 * i), a: Math.PI + (r() - 0.5) * 0.8, life: 60 + r() * 60 });
+    g.strokeStyle = col; g.fillStyle = col; g.lineWidth = 1; g.lineCap = 'round';
+    var limit = wide ? w * 0.64 : w * 0.8;
+    while (tips.length && n < 4000) {
+      var t = tips.shift(); n++;
+      var steps = 0;
+      while (t.life-- > 0 && t.x > limit && t.y > 70 && t.y < h + 10) {
+        var nx = t.x + Math.cos(t.a) * 7, ny = t.y + Math.sin(t.a) * 7;
+        g.globalAlpha = wide ? 0.55 : 0.28;
+        g.beginPath(); g.moveTo(t.x, t.y); g.lineTo(nx, ny); g.stroke();
+        t.x = nx; t.y = ny; t.a += (r() - 0.5) * 0.35; steps++;
+        if (r() < 0.045 && tips.length < 40) tips.push({ x: t.x, y: t.y, a: t.a + (r() < 0.5 ? 1 : -1) * (0.5 + r() * 0.5), life: 15 + r() * 45 });
+      }
+      if (steps > 3 && r() < 0.6) {
+        g.globalAlpha = wide ? 0.8 : 0.4;
+        var rad = 2.5 + r() * 3.5;
+        g.beginPath(); g.arc(t.x, t.y, rad, 0, 6.3); g.fill();
+        g.globalAlpha = wide ? 0.35 : 0.2;
+        g.beginPath(); g.arc(t.x, t.y, rad + 4, 0, 6.3); g.stroke();
+      }
+    }
+  }
+  draw();
+  var to; window.addEventListener('resize', function () { clearTimeout(to); to = setTimeout(draw, 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+
+  var b = document.getElementById('copy'), m = document.getElementById('mail');
+  b.addEventListener('click', function () {
+    var done = function () { b.textContent = 'Address copied'; setTimeout(function () { b.textContent = 'Copy address'; }, 2000); };
+    var fallback = function () { var rg = document.createRange(); rg.selectNodeContents(m); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(rg); b.textContent = 'Address selected'; };
+    try { navigator.clipboard.writeText(m.textContent).then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+</body>
+</html>
