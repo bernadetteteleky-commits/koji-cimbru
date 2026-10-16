@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="KOJI-CIMBRU: development and validation of a koji fermentation technology for pork and beef dishes. Innovation voucher project PN-IV-P7-7.1-CI-2025-0166, USAMV Cluj-Napoca and Cimbru.">
+<meta name="description" content="KOJI-CIMBRU: dezvoltarea și validarea unei tehnologii de fermentare cu koji pentru preparate din carne de porc și de vită. Proiect cec de inovare PN-IV-P7-7.1-CI-2025-0166, USAMV Cluj-Napoca și Cimbru.">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>KOJI-CIMBRU</title>
+<link rel="alternate" hreflang="ro" href="https://bernadetteteleky-commits.github.io/koji-cimbru/">
+<link rel="alternate" hreflang="en" href="https://bernadetteteleky-commits.github.io/koji-cimbru/en.html">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a dark full-bleed hero with koji mycelium growing in from the right; below it, wide bands alternating a reading column with card grids. */
@@ -64,6 +66,8 @@ nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 0.92rem; align-i
 nav a { text-decoration: none; color: var(--hero-muted); font-weight: 500; }
 nav a:hover { color: var(--hero-line); }
 nav a:focus-visible { outline-color: var(--hero-line); }
+nav a.lang { border: 1px solid var(--hero-muted); border-radius: 99px; padding: 0 10px; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; }
+nav a.lang:hover { border-color: var(--hero-line); }
 nav .brand { color: var(--hero-ink); font-family: var(--display); font-weight: 800; margin-right: auto; letter-spacing: 0.02em; }
 .hero-text { display: flex; flex-direction: column; gap: 18px; max-width: 40rem; }
 .hero .kicker { color: var(--hero-line); }
@@ -161,151 +165,152 @@ footer .wrap { padding-block: 24px 48px; display: flex; flex-direction: column; 
 
 </head>
 <body>
-<div lang="en">
+<div lang="ro">
 <header class="hero" id="top">
   <canvas id="myc" aria-hidden="true"></canvas>
   <div class="wrap">
-    <nav aria-label="Sections">
+    <nav aria-label="Secțiuni">
       <a class="brand" href="#top">KOJI-CIMBRU</a>
-      <a href="#about">About</a>
-      <a href="#objectives">Objectives</a>
-      <a href="#activities">Activities</a>
-      <a href="#results">Results</a>
-      <a href="#team">Team</a>
-      <a href="#partners">Partners</a>
+      <a href="#about">Despre</a>
+      <a href="#objectives">Obiective</a>
+      <a href="#activities">Activități</a>
+      <a href="#results">Rezultate</a>
+      <a href="#team">Echipa</a>
+      <a href="#partners">Parteneri</a>
       <a href="#contact">Contact</a>
+      <a class="lang" href="en.html" hreflang="en" lang="en" title="English version">EN</a>
     </nav>
     <div class="hero-text">
-      <span class="kicker">Innovation voucher · USAMV Cluj-Napoca × Cimbru</span>
+      <span class="kicker">Cec de inovare · USAMV Cluj-Napoca × Cimbru</span>
       <h1>KOJI<span>-</span>CIMBRU</h1>
-      <p class="lede">Pork and beef, tenderised in 2–3 days by a noble mould: <em>Aspergillus oryzae</em>.</p>
-      <p class="sub">Development and validation of an innovative koji fermentation technology for meat dishes inspired by Romanian gastronomy</p>
+      <p class="lede">Carne de porc și de vită, frăgezită în 2-3 zile de un mucegai nobil: <em>Aspergillus oryzae</em>.</p>
+      <p class="sub">Dezvoltarea și validarea unei tehnologii inovative de fermentare cu koji pentru preparate din carne inspirate din gastronomia românească</p>
     </div>
   </div>
 </header>
 
 <main>
   <div class="wrap">
-    <div class="figures" aria-label="The project in figures">
-      <div class="fig"><b>48–72 h</b><span>koji fermentation time</span></div>
-      <div class="fig"><b>2</b><span>applications: pork and beef</span></div>
-      <div class="fig"><b>6 months</b><span>July – December 2026</span></div>
-      <div class="fig"><b>TRL 5</b><span>target technology readiness level</span></div>
+    <div class="figures" aria-label="Proiectul în cifre">
+      <div class="fig"><b>48-72 h</b><span>durata fermentării cu koji</span></div>
+      <div class="fig"><b>2</b><span>aplicații: carne de porc și de vită</span></div>
+      <div class="fig"><b>6 luni</b><span>iulie - decembrie 2026</span></div>
+      <div class="fig"><b>TRL 5</b><span>nivelul de maturitate tehnologică vizat</span></div>
     </div>
   </div>
 
-  <div class="wrap"><figure class="banner"><img src="cuts.jpg" alt="Five cuts of raw beef on baking paper with rosemary and chillies"></figure></div>
+  <div class="wrap"><figure class="banner"><img src="cuts.jpg" alt="Cinci bucăți de carne crudă de vită pe hârtie de copt, cu rozmarin și ardei iute"></figure></div>
 
   <section id="about"><div class="wrap cols">
     <div class="prose">
-      <span class="kicker">About the project</span>
-      <h2>An old technique, a new raw material</h2>
-      <p>Koji is a culture of <em>Aspergillus oryzae</em>, traditionally used in fermented foods based on cereals and soy. The proteases and lipases it produces release free amino acids, peptides and aroma compounds. The meat becomes more tender and its umami taste intensifies.</p>
-      <p>The process is poorly documented for pork and beef, particularly regarding the compounds formed and food safety. The project develops and validates two technological applications that the restaurant Cimbru will integrate into its own kitchen.</p>
-      <p>The research is carried out by a team from the Faculty of Food Science and Technology at USAMV Cluj-Napoca, from laboratory trials to validation under real conditions of use.</p>
+      <span class="kicker">Despre proiect</span>
+      <h2>O tehnică veche, o materie primă nouă</h2>
+      <p>Koji este o cultură de <em>Aspergillus oryzae</em>, folosită în mod tradițional în alimente fermentate pe bază de cereale și soia. Proteazele și lipazele pe care le produce eliberează aminoacizi liberi, peptide și compuși de aromă. Carnea devine mai fragedă, iar gustul umami se intensifică.</p>
+      <p>Procesul este puțin documentat pentru carnea de porc și de vită, mai ales în privința compușilor formați și a siguranței alimentare. Proiectul dezvoltă și validează două aplicații tehnologice pe care restaurantul Cimbru le va integra în propria bucătărie.</p>
+      <p>Cercetarea este realizată de o echipă a Facultății de Știința și Tehnologia Alimentelor din cadrul USAMV Cluj-Napoca, de la încercările de laborator până la validarea în condiții reale de utilizare.</p>
     </div>
     <div class="side">
-    <div class="chart" role="img" aria-label="Processing time: traditional ageing over 30 days, koji fermentation 48 to 72 hours">
-      <h3>Processing time</h3>
+    <div class="chart" role="img" aria-label="Durata procesării: maturare tradițională peste 30 de zile, fermentare cu koji 48-72 de ore">
+      <h3>Durata procesării</h3>
       <div class="bar-row">
-        <div class="lab"><span>Traditional ageing</span><b>over 30 days</b></div>
+        <div class="lab"><span>Maturare tradițională</span><b>peste 30 de zile</b></div>
         <div class="track"><i class="b-trad"></i></div>
       </div>
       <div class="bar-row">
-        <div class="lab"><span>Koji fermentation</span><b>48–72 h</b></div>
+        <div class="lab"><span>Fermentare cu koji</span><b>48-72 h</b></div>
         <div class="track"><i class="b-koji"></i></div>
       </div>
-      <div class="axis"><span>0</span><span>10</span><span>20</span><span>30 days</span></div>
-      <small>Durations estimated from the literature; the project tests them experimentally for pork and beef.</small>
+      <div class="axis"><span>0</span><span>10</span><span>20</span><span>30 de zile</span></div>
+      <small>Durate estimate pe baza literaturii; proiectul le testează experimental pentru carnea de porc și de vită.</small>
     </div>
-    <figure><img src="seasoned.jpg" alt="Raw beef steak seasoned with oil, garlic, rosemary and pepper"></figure>
+    <figure><img src="seasoned.jpg" alt="Friptură crudă de vită condimentată cu ulei, usturoi, rozmarin și piper"></figure>
     </div>
   </div>
   <div class="wrap"><figure>
-    <div class="plate"><img src="koji.jpg" alt="Koji starter culture, Aspergillus oryzae conidiophore and conidia under the microscope, and the steps from steamed rice to koji after incubation"></div>
-    <figcaption>How koji is made: spores of <em>Aspergillus oryzae</em> are spread on steamed rice and grow into a mycelium during incubation. Illustrative image.</figcaption>
+    <div class="plate"><img src="koji.jpg" alt="Cultură starter koji, conidiofor și conidii de Aspergillus oryzae la microscop și etapele de la orezul fiert la abur la koji după incubare"></div>
+    <figcaption>Cum se obține koji: sporii de <em>Aspergillus oryzae</em> sunt distribuiți pe orez fiert la abur și formează un miceliu în timpul incubării. Imagine ilustrativă.</figcaption>
   </figure></div></section>
 
   <section id="objectives"><div class="wrap stack">
-    <span class="kicker">Objectives</span>
-    <h2>What we set out to do</h2>
-    <p class="goal">A controlled koji fermentation technology for pork and beef dishes that improves sensory quality, shortens ageing, and increases microbiological safety and stability.</p>
+    <span class="kicker">Obiective</span>
+    <h2>Ce ne propunem</h2>
+    <p class="goal">O tehnologie controlată de fermentare cu koji pentru preparate din carne de porc și de vită, care îmbunătățește calitatea senzorială, scurtează maturarea și crește siguranța și stabilitatea microbiologică.</p>
     <div class="grid2">
-      <div class="obj"><span class="n">O1</span><h3>Process development and optimisation</h3><p>Setting the technological parameters (culture type and dose, time, temperature, humidity) for two applications: pork, targeting faster tenderisation and umami taste, and beef, targeting aromatic complexity, texture and stability.</p></div>
-      <div class="obj"><span class="n">O2</span><h3>Biochemical and microbiological characterisation</h3><p>Physico-chemical parameters (pH, water activity, proximate analysis, colour), microbiological analysis for food safety, the effect of cooking, and the profile of the compounds formed (free amino acids, peptides, metabolites), including by HPLC.</p></div>
-      <div class="obj"><span class="n">O3</span><h3>Sensory evaluation and validation</h3><p>Texture, aroma, taste and overall acceptability assessed with a 9-point hedonic test, correlated with the analytical data and compared with traditional processing methods.</p></div>
-      <div class="obj"><span class="n">O4</span><h3>Technology transfer and exploitation</h3><p>Technological protocols, technical sheets and implementation guides, plus validation of the applications under real conditions of use at Cimbru.</p></div>
+      <div class="obj"><span class="n">O1</span><h3>Dezvoltarea și optimizarea procesului</h3><p>Stabilirea parametrilor tehnologici (tipul și doza culturii, timp, temperatură, umiditate) pentru două aplicații: carnea de porc, pentru frăgezire mai rapidă și gust umami, și carnea de vită, pentru complexitate aromatică, textură și stabilitate.</p></div>
+      <div class="obj"><span class="n">O2</span><h3>Caracterizare biochimică și microbiologică</h3><p>Parametri fizico-chimici (pH, activitatea apei, compoziție proximată, culoare), analize microbiologice pentru siguranța alimentară, efectul tratamentului termic și profilul compușilor formați (aminoacizi liberi, peptide, metaboliți), inclusiv prin HPLC.</p></div>
+      <div class="obj"><span class="n">O3</span><h3>Evaluare senzorială și validare</h3><p>Textura, aroma, gustul și acceptabilitatea generală, evaluate printr-un test hedonic în 9 puncte, corelate cu datele analitice și comparate cu metodele tradiționale de procesare.</p></div>
+      <div class="obj"><span class="n">O4</span><h3>Transfer tehnologic și valorificare</h3><p>Protocoale tehnologice, fișe tehnice și ghiduri de implementare, precum și validarea aplicațiilor în condiții reale de utilizare la Cimbru.</p></div>
     </div>
   </div></section>
 
   <section id="activities"><div class="wrap stack">
-    <span class="kicker">Activities</span>
-    <h2>From the laboratory to the kitchen in 6 months</h2>
+    <span class="kicker">Activități</span>
+    <h2>Din laborator în bucătărie în 6 luni</h2>
     <ol class="steps">
-      <li><h3>Fermentation protocols</h3><p>Developing and optimising the protocols for pork and beef.</p></li>
-      <li><h3>Experimental batches</h3><p>Producing batches of fermented products alongside control samples.</p></li>
-      <li><h3>Characterisation and evaluation</h3><p>Physico-chemical, microbiological and biochemical analyses, followed by sensory evaluation.</p></li>
-      <li><h3>Validation and transfer</h3><p>Validation in the Cimbru kitchen, product technical sheets, and transfer to the beneficiary.</p></li>
+      <li><h3>Protocoale de fermentare</h3><p>Dezvoltarea și optimizarea protocoalelor pentru carnea de porc și de vită.</p></li>
+      <li><h3>Șarje experimentale</h3><p>Obținerea de șarje de produse fermentate, alături de probe martor.</p></li>
+      <li><h3>Caracterizare și evaluare</h3><p>Analize fizico-chimice, microbiologice și biochimice, urmate de evaluarea senzorială.</p></li>
+      <li><h3>Validare și transfer</h3><p>Validare în bucătăria Cimbru, fișe tehnice de produs și transfer către beneficiar.</p></li>
     </ol>
     <div class="strip">
-      <figure><img src="raw.jpg" alt="Raw rib-eye steak with rosemary and spices"><figcaption>Raw material</figcaption></figure>
-      <figure><img src="chamber.jpg" alt="Beef cuts coated in koji on racks in a stainless-steel chamber"><figcaption>Fermentation with koji</figcaption></figure>
-      <figure><img src="plated.jpg" alt="Grilled steak on a plate"><figcaption>On the plate</figcaption></figure>
+      <figure><img src="raw.jpg" alt="Antricot crud de vită cu rozmarin și condimente"><figcaption>Materia primă</figcaption></figure>
+      <figure><img src="chamber.jpg" alt="Bucăți de carne de vită acoperite cu koji, pe grătare, într-o cameră din inox"><figcaption>Fermentare cu koji</figcaption></figure>
+      <figure><img src="plated.jpg" alt="Friptură la grătar, servită în farfurie"><figcaption>În farfurie</figcaption></figure>
     </div>
-    <p class="note" style="font-size:0.82rem;color:var(--muted)">Illustrative images. Photographs of the project's own batches will be added as the work progresses.</p>
+    <p class="note" style="font-size:0.82rem;color:var(--muted)">Imagini ilustrative. Fotografiile șarjelor proprii ale proiectului vor fi adăugate pe măsură ce lucrările avansează.</p>
   </div></section>
 
   <section id="results"><div class="wrap stack">
-    <span class="kicker">Results</span>
-    <h2>What the project leaves behind</h2>
+    <span class="kicker">Rezultate</span>
+    <h2>Ce rămâne după proiect</h2>
     <ul class="plain">
-      <li>at least two experimentally validated fermentation protocols;</li>
-      <li>product technical sheets and implementation guides for the beneficiary;</li>
-      <li>research reports on the composition, safety and sensory quality of the products;</li>
-      <li>a technology at TRL 5, integrated into the restaurant's operations.</li>
+      <li>cel puțin două protocoale de fermentare validate experimental;</li>
+      <li>fișe tehnice de produs și ghiduri de implementare pentru beneficiar;</li>
+      <li>rapoarte de cercetare privind compoziția, siguranța și calitatea senzorială a produselor;</li>
+      <li>o tehnologie la TRL 5, integrată în activitatea restaurantului.</li>
     </ul>
-    <p>Results obtained: <span class="todo">public summary, at project end</span></p>
-    <p>Dissemination: <span class="todo">articles, conference papers, events</span></p>
+    <p>Rezultate obținute: <span class="todo">rezumat public, la finalul proiectului</span></p>
+    <p>Diseminare: <span class="todo">articole, lucrări la conferințe, evenimente</span></p>
   </div></section>
 
   <section id="team"><div class="wrap stack">
-    <span class="kicker">Team</span>
-    <h2>The researchers</h2>
-    <p class="goal">Four researchers from the Faculty of Food Science and Technology, USAMV Cluj-Napoca, working in food biotechnology, applied microbiology and controlled fermentation.</p>
+    <span class="kicker">Echipa</span>
+    <h2>Cercetătorii</h2>
+    <p class="goal">Patru cercetători ai Facultății de Știința și Tehnologia Alimentelor, USAMV Cluj-Napoca, cu activitate în biotehnologie alimentară, microbiologie aplicată și fermentare controlată.</p>
     <div class="grid2">
       <div class="member">
-        <img src="teleky.jpg" alt="Portrait of Bernadette-Emőke Teleky" width="116" height="206" style="height:auto">
+        <img src="teleky.jpg" alt="Fotografie: Bernadette-Emőke Teleky" width="116" height="206" style="height:auto">
         <div class="txt">
-          <span class="kicker">Project lead</span>
+          <span class="kicker">Director de proiect</span>
           <h3>Dr. Bernadette-Emőke Teleky</h3>
-          <p>Scientific Researcher II. She holds two doctorates, in Mechanical Engineering (2016) and in Biotechnology (2025, <em>summa cum laude</em>), and works on solid-state and submerged fermentation, the valorisation of agro-industrial by-products, and bioactive compounds. She led the postdoctoral project Bio-Cycle on itaconic acid production from food-industry by-products and has authored more than 60 indexed publications.</p>
+          <p>Cercetător științific gradul II. Are două doctorate, în Inginerie Mecanică (2016) și în Biotehnologie (2025, <em>summa cum laude</em>), și lucrează în domeniul fermentației în mediu solid și submers, al valorificării subproduselor agroindustriale și al compușilor bioactivi. A coordonat proiectul postdoctoral Bio-Cycle, privind producția de acid itaconic din subproduse ale industriei alimentare, și este autoare a peste 60 de publicații indexate.</p>
           <div class="links"><a href="https://orcid.org/0000-0003-3672-8717">ORCID</a></div>
         </div>
       </div>
       <div class="member">
-        <img src="vodnar.jpg" alt="Portrait of Dan Cristian Vodnar" width="116" height="116">
+        <img src="vodnar.jpg" alt="Fotografie: Dan Cristian Vodnar" width="116" height="116">
         <div class="txt">
-          <span class="kicker">Team member</span>
+          <span class="kicker">Membru în echipă</span>
           <h3>Prof. Dr. Dan Cristian Vodnar</h3>
-          <p>Professor of food biotechnology and President of the USAMV Cluj-Napoca Senate. Listed every year since 2020 among the top 2% most cited scientists worldwide (Stanford University and Elsevier), with an h-index of 70 and more than 250 publications. His group developed the synbiotic Echibiotic and received the “Gheorghe Ionescu-Șișești” Prize for Biotechnology at the 2024 Romanian Research Gala.</p>
+          <p>Profesor de biotehnologie alimentară și președinte al Senatului USAMV Cluj-Napoca. Inclus în fiecare an, din 2020, în topul celor mai citați 2% cercetători din lume (Stanford University și Elsevier), cu un indice h de 70 și peste 250 de publicații. Grupul său a dezvoltat simbioticul Echibiotic și a primit Premiul „Gheorghe Ionescu-Șișești” pentru Biotehnologie la Gala Cercetării Românești 2024.</p>
           <div class="links"><a href="https://danvodnar.ro/">danvodnar.ro</a><a href="https://orcid.org/0000-0001-5407-8071">ORCID</a></div>
         </div>
       </div>
       <div class="member">
-        <img src="calinoiu.jpg" alt="Portrait of Lavinia-Florina Călinoiu" width="116" height="116">
+        <img src="calinoiu.jpg" alt="Fotografie: Lavinia-Florina Călinoiu" width="116" height="116">
         <div class="txt">
-          <span class="kicker">Team member</span>
+          <span class="kicker">Membru în echipă</span>
           <h3>Dr. Lavinia-Florina Călinoiu</h3>
-          <p>Lecturer in food biotechnology, food chemistry and molecular gastronomy, with a PhD in Food Biotechnology (2019). She coordinates the Horizon Europe MSCA Staff Exchanges project PURE-WAY on turning agro-food waste into value, led a national project on in situ vitamin B12 fortification of cereal by-products, and evaluates proposals for the European Commission. She has published 45 scientific articles.</p>
+          <p>Lector de biotehnologie alimentară, chimie alimentară și gastronomie moleculară, doctor în Biotehnologie Alimentară (2019). Coordonează proiectul Horizon Europe MSCA Staff Exchanges PURE-WAY, privind valorificarea deșeurilor agroalimentare, a condus un proiect național privind fortificarea in situ cu vitamina B12 a subproduselor din cereale și evaluează propuneri pentru Comisia Europeană. A publicat 45 de articole științifice.</p>
           <div class="links"><a href="https://orcid.org/0000-0002-0198-0472">ORCID</a></div>
         </div>
       </div>
       <div class="member">
-        <img src="martau.jpg" alt="Portrait of Gheorghe-Adrian Martău" width="116" height="116">
+        <img src="martau.jpg" alt="Fotografie: Gheorghe-Adrian Martău" width="116" height="116">
         <div class="txt">
-          <span class="kicker">Team member</span>
+          <span class="kicker">Membru în echipă</span>
           <h3>Dr. Gheorghe-Adrian Martău</h3>
-          <p>Lecturer in fermentation technologies (malt and beer; wine, vinegar and distilled products; special biotechnologies), with a PhD in Food Biotechnology awarded <em>summa cum laude</em>. He leads a national young-teams project on in situ lovastatin production through a hybrid fermentation–enzymatic bioprocess, and works on solid-state fermentation and the valorisation of agro-industrial by-products.</p>
+          <p>Lector de tehnologii fermentative (malț și bere; vin, oțet și produse distilate; biotehnologii speciale), doctor în Biotehnologie Alimentară, cu distincția <em>summa cum laude</em>. Conduce un proiect național pentru echipe tinere privind producția in situ de lovastatină printr-un bioproces hibrid fermentativ-enzimatic și lucrează în domeniul fermentației în mediu solid și al valorificării subproduselor agroindustriale.</p>
           <div class="links"><a href="https://orcid.org/0000-0001-8220-1030">ORCID</a></div>
         </div>
       </div>
@@ -313,57 +318,57 @@ footer .wrap { padding-block: 24px 48px; display: flex; flex-direction: column; 
   </div></section>
 
   <section id="partners"><div class="wrap stack">
-    <span class="kicker">Partners</span>
-    <h2>A restaurant and a university</h2>
+    <span class="kicker">Parteneri</span>
+    <h2>Un restaurant și o universitate</h2>
     <div class="grid2">
       <div class="org">
-        <div class="marks"><img src="cimbru.png" alt="Cimbru Restaurant logo"></div>
-        <span class="kicker" style="color:var(--mint)">Beneficiary</span>
+        <div class="marks"><img src="cimbru.png" alt="Sigla restaurantului Cimbru"></div>
+        <span class="kicker" style="color:var(--mint)">Beneficiar</span>
         <h3>Cimbru · CIMBRU GOURMET SRL</h3>
-        <p>Cimbru began as a food truck in Cluj-Napoca and grew into a restaurant and delivery service. Since autumn 2021, chef Nicolae Crăciun has also run Cimbru Author Cuisine on Strada Emil Isac 11, a casual fine dining restaurant whose short menu changes every week with the season and works closely with local producers.</p>
-        <p>In 2026 it became the first restaurant in Romania listed in the international We're Smart Green Guide, with a rating of one radish, and joined the JRE (Jeunes Restaurateurs) association.</p>
-        <div class="tags"><span>We're Smart Green Guide 2026</span><span>JRE member</span></div>
-        <p>Beneficiary lead: Nicolae Crăciun</p>
-        <p><a href="https://cimbru.net/">cimbru.net</a> · <a href="https://cluj24.ro/un-restaurant-clujean-primul-din-romania-intr-un-ghid-gastronomic-international-chef-nicolae-craciun-punem-si-orasul-pe-harta-306498.html">Cluj24 article (in Romanian)</a></p>
+        <p>Cimbru a pornit ca food truck în Cluj-Napoca și a devenit restaurant și serviciu de livrare. Din toamna lui 2021, chef Nicolae Crăciun conduce și Cimbru Author Cuisine, pe strada Emil Isac 11, un restaurant casual fine dining al cărui meniu scurt se schimbă în fiecare săptămână, după sezon, și care lucrează îndeaproape cu producători locali.</p>
+        <p>În 2026 a devenit primul restaurant din România inclus în ghidul internațional We're Smart Green Guide, cu un calificativ de o ridiche, și s-a alăturat asociației JRE (Jeunes Restaurateurs).</p>
+        <div class="tags"><span>We're Smart Green Guide 2026</span><span>Membru JRE</span></div>
+        <p>Responsabil din partea beneficiarului: Nicolae Crăciun</p>
+        <p><a href="https://cimbru.net/">cimbru.net</a> · <a href="https://cluj24.ro/un-restaurant-clujean-primul-din-romania-intr-un-ghid-gastronomic-international-chef-nicolae-craciun-punem-si-orasul-pe-harta-306498.html">Articol Cluj24</a></p>
       </div>
       <div class="org">
-        <div class="marks"><img src="usamv.png" alt="USAMV Cluj-Napoca logo"><img src="sta.png" alt="Faculty of Food Science and Technology logo"></div>
-        <span class="kicker">RDI service provider</span>
+        <div class="marks"><img src="usamv.png" alt="Sigla USAMV Cluj-Napoca"><img src="sta.png" alt="Sigla Facultății de Știința și Tehnologia Alimentelor"></div>
+        <span class="kicker">Furnizor de servicii CDI</span>
         <h3>USAMV Cluj-Napoca</h3>
-        <p>The University of Agricultural Sciences and Veterinary Medicine Cluj-Napoca, founded in 1869. The work is carried out at the Faculty of Food Science and Technology, with the university's own staff and research infrastructure.</p>
-        <p><a href="https://eertis.eu/erio-2300-000j-4198">Research infrastructure (EERTIS)</a></p>
+        <p>Universitatea de Științe Agricole și Medicină Veterinară Cluj-Napoca, fondată în 1869. Lucrările se desfășoară la Facultatea de Știința și Tehnologia Alimentelor, cu personalul și infrastructura de cercetare proprii ale universității.</p>
+        <p><a href="https://eertis.eu/erio-2300-000j-4198">Infrastructura de cercetare (EERTIS)</a></p>
       </div>
     </div>
-    <dl class="ledger" aria-label="Project fact sheet">
-      <div><dt>Project code</dt><dd class="mono">PN-IV-P7-7.1-CI-2025-0166</dd></div>
-      <div><dt>Funding contract</dt><dd>no. 3CI/2026</dd></div>
-      <div><dt>Implementation period</dt><dd>6 July – 31 December 2026</dd></div>
-      <div><dt>Total value</dt><dd>50,000 RON</dd></div>
-      <div><dt>Public funding</dt><dd>45,000 RON</dd></div>
-      <div><dt>Beneficiary contribution</dt><dd>5,000 RON</dd></div>
+    <dl class="ledger" aria-label="Fișa proiectului">
+      <div><dt>Cod proiect</dt><dd class="mono">PN-IV-P7-7.1-CI-2025-0166</dd></div>
+      <div><dt>Contract de finanțare</dt><dd>nr. 3CI/2026</dd></div>
+      <div><dt>Perioada de implementare</dt><dd>6 iulie - 31 decembrie 2026</dd></div>
+      <div><dt>Valoare totală</dt><dd>50.000 lei</dd></div>
+      <div><dt>Finanțare publică</dt><dd>45.000 lei</dd></div>
+      <div><dt>Contribuția beneficiarului</dt><dd>5.000 lei</dd></div>
     </dl>
   </div></section>
 
   <section id="contact"><div class="wrap" style="display:flex;flex-direction:column;gap:16px">
     <span class="kicker">Contact</span>
-    <h2>Get in touch</h2>
-    <p>Dr. Bernadette-Emőke Teleky<br>Faculty of Food Science and Technology, USAMV Cluj-Napoca<br>Calea Mănăștur 3–5, 400372 Cluj-Napoca, Romania</p>
+    <h2>Date de contact</h2>
+    <p>Dr. Bernadette-Emőke Teleky<br>Facultatea de Știința și Tehnologia Alimentelor, USAMV Cluj-Napoca<br>Calea Mănăștur 3-5, 400372 Cluj-Napoca, România</p>
     <div class="contact">
       <span class="mail" id="mail">bernadette.teleky@usamvcluj.ro</span>
-      <button class="copy" id="copy" type="button">Copy address</button>
+      <button class="copy" id="copy" type="button">Copiază adresa</button>
     </div>
   </div></section>
 </main>
 
 <footer><div class="wrap">
-  <div class="logos" aria-label="Logos">
-    <img src="uefiscdi.png" alt="UEFISCDI logo">
-    <img src="usamv.png" alt="USAMV Cluj-Napoca logo">
-    <img src="sta.png" alt="Faculty of Food Science and Technology logo">
-    <img src="cimbru.png" alt="Cimbru Restaurant logo">
+  <div class="logos" aria-label="Sigle">
+    <img src="uefiscdi.png" alt="Sigla UEFISCDI">
+    <img src="usamv.png" alt="Sigla USAMV Cluj-Napoca">
+    <img src="sta.png" alt="Sigla Facultății de Știința și Tehnologia Alimentelor">
+    <img src="cimbru.png" alt="Sigla restaurantului Cimbru">
   </div>
-  <p>This project is funded by the Romanian Ministry of Education and Research, through UEFISCDI, under the National Plan for Research, Development and Innovation 2022–2027 (PNCDI IV), Innovation Voucher instrument, project code PN-IV-P7-7.1-CI-2025-0166, contract no. 3CI/2026.</p>
-  <p>Last updated: 9 October 2026</p>
+  <p>Acest proiect este finanțat de Ministerul Educației și Cercetării, prin UEFISCDI, în cadrul Planului Național de Cercetare, Dezvoltare și Inovare 2022-2027 (PNCDI IV), instrumentul Cec de inovare, cod proiect PN-IV-P7-7.1-CI-2025-0166, contract nr. 3CI/2026.</p>
+  <p>Ultima actualizare: 16 octombrie 2026</p>
 </div></footer>
 </div>
 
@@ -406,11 +411,17 @@ footer .wrap { padding-block: 24px 48px; display: flex; flex-direction: column; 
 
   var b = document.getElementById('copy'), m = document.getElementById('mail');
   b.addEventListener('click', function () {
-    var done = function () { b.textContent = 'Address copied'; setTimeout(function () { b.textContent = 'Copy address'; }, 2000); };
-    var fallback = function () { var rg = document.createRange(); rg.selectNodeContents(m); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(rg); b.textContent = 'Address selected'; };
+    var done = function () { b.textContent = 'Adresă copiată'; setTimeout(function () { b.textContent = 'Copiază adresa'; }, 2000); };
+    var fallback = function () { var rg = document.createRange(); rg.selectNodeContents(m); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(rg); b.textContent = 'Adresă selectată'; };
     try { navigator.clipboard.writeText(m.textContent).then(done, fallback); } catch (e) { fallback(); }
   });
 })();
+</script>
+<script>
+// keep the current section when switching language
+document.querySelectorAll('a.lang').forEach(function (a) {
+  a.addEventListener('click', function () { if (location.hash) a.href = a.getAttribute('href').split('#')[0] + location.hash; });
+});
 </script>
 </body>
 </html>
